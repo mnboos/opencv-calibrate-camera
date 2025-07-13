@@ -73,20 +73,20 @@ print(tvecs)
 for fname in images:
     img = cv2.imread(fname)
     # Refining the camera matrix using parameters obtained by calibration
-    newcameramtx, roi = cv2.getOptimalNewCameraMatrix(mtx, dist, (w,h), 1, (w,h))
+    newcameramtx, roi = cv2.getOptimalNewCameraMatrix(mtx, dist, (w,h), 0, (w,h))
  
 # Method 1 to undistort the image
     dst = cv2.undistort(img, mtx, dist, None, newcameramtx)
  
 # Method 2 to undistort the image
-    mapx,mapy=cv2.initUndistortRectifyMap(mtx,dist,None,newcameramtx,(w,h),5)
-    dst2 = cv2.remap(img,mapx,mapy,cv2.INTER_LINEAR)
+    #mapx,mapy=cv2.initUndistortRectifyMap(mtx,dist,None,newcameramtx,(w,h),5)
+    #dst2 = cv2.remap(img,mapx,mapy,cv2.INTER_LINEAR)
  
 # Displaying the undistorted image
-    #cv2.imshow("undistorted image method 1",dst)
+    cv2.imshow("undistorted image method 1",dst)
     #cv2.imshow("undistorted image method 2",dst2)
 
-    #cv2.waitKey(0)
+    cv2.waitKey(0)
 
 
 mean_error = 0
